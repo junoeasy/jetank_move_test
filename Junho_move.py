@@ -4,9 +4,6 @@ from jetbot import Robot
 from SCSCtrl import TTLServo
 
 robot = Robot()
-# 모터의 초기 회전 임계값입니다.
-# 기어 모터는 낮은 PWM 간격에서 회전할 수 없습니다.
-# 장기간의 정전은 모터의 수명을 줄일 수 있습니다.
 moveStartTor = 0.15    
 
 fb_input = 0           # 전방 및 후방 방향의 속도 매개변수를 저장합니다.
