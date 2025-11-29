@@ -388,6 +388,8 @@ robot = Robot()
 print("address : ")
 #print(addresses)
 if __name__ == "__main__":
+
+# servoAngleCtrl(ServoNum, AngleInput, DirectionDebug, SpeedInput):
     servoAngleCtrl(1, 0, 1, 150)
     time.sleep(0.1)
     servoAngleCtrl(2, 0, 1, 150)
