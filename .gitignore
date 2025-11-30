@@ -1,0 +1,14 @@
+build/
+install/
+log/
+__pycache__/
+*.pyc
+.vscode/
+<<<<<<< HEAD
+.ipynb_checkpoints/
+SCSCtrl.egg-info/
+=======
+.ipynb_checkpoints
+SCSCtrl.egg-info
+dist
+>>>>>>> a1f896f899af7f89cb6b8f152a847bda0e06c5be
