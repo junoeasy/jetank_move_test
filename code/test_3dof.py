@@ -4,6 +4,10 @@ import time
 import sys
 import numpy as np
 
+import os
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
 # --- 라이브러리 임포트 (기존과 동일) ---
 try:
     import rclpy
@@ -29,20 +33,20 @@ class Config:
     ID_BASE = 1
     ID_SHOULDER = 2
     ID_ELBOW = 3
-    ID_WRIST_P = 4
-    ID_WRIST_Y = 5
+    ID_WRIST_P = 5
+    ID_WRIST_Y = 4
     
-    SERVO_IDS = [1, 2, 3, 4, 5]
+    SERVO_IDS = [1, 2, 3, 5, 4]
 
     # [중요] 링크 길이 (mm) - 알려주신 값 반영
     # L1: 어깨~팔꿈치, L2: 팔꿈치~손목, L3: 손목~전자석끝
     LINK_1 = 100.0  # 10cm
-    LINK_2 = 150.0  # 15cm
+    LINK_2 = 100.0  # 10cm
     LINK_3 = 80.0   # 5cm(Wrist) + 3cm(Yaw+Magnet) = 8cm
 
     # 초기 위치 (Calibration 값) - 조립 상태에 따라 수정 필요
     # 예: 512가 똑바른 0도라고 가정
-    SERVO_INIT_POS = {1: 512, 2: 512, 3: 512, 4: 512, 5: 512}
+    SERVO_INIT_POS = {1: 514, 2: 961, 3: 940, 4: 512, 5: 548}
     
     INPUT_RANGE = 850    # 모터 입력 범위 (0~1023 기준 움직임 폭)
     ANGLE_RANGE = 180.0  # 위 입력값에 해당하는 각도 범위
@@ -208,7 +212,9 @@ def main():
         
         # 1. 홈 포지션 (모두 0도 - "ㄱ"자 혹은 "1"자 대기)
         # 로봇 팔을 안전하게 들기
-        arm.move_to_xyz(150, 0, 150, 2.0)
+        arm.move_to_xyz(220, 0, 0, 2.0)
+        time.sleep(2)
+        arm.move_to_xyz(100, 0, 50, 2.0)
         time.sleep(2)
         
         # 2. 물건 잡으러 가기 (X=200, Y=0, Z=50)
